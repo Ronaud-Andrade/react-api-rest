@@ -1,17 +1,26 @@
 from django.conf import settings
-from myapp.models import Product
+from myapp.models import Gallery, Product
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.views import (TokenObtainPairView,
                                             TokenRefreshView)
 
-from .serializers import CookieTokenRefreshSerializer, ProductSerializer
+from .serializers import CookieTokenRefreshSerializer, GallerySerializer, ProductSerializer
 
 
+# ViewSet para o model Product, já existente na API.
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+# ViewSet para a nova entidade Gallery.
+# O ModelViewSet oferece automaticamente as ações CRUD:
+# list, retrieve, create, update, partial_update e destroy.
+class GalleryViewSet(viewsets.ModelViewSet):
+    queryset = Gallery.objects.all().order_by('-created_at')
+    serializer_class = GallerySerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):

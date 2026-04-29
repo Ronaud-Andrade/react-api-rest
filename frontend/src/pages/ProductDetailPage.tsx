@@ -34,41 +34,72 @@ function ProductDetailPage() {
     );
 
     return (
-      <div className="flex justify-center items-center min-h-screen p-4">
-        <div className="w-full max-w-3xl bg-white shadow-md rounded p-8 space-y-6 text-center">
-          <h1 className="text-3xl font-bold">Detalhes do Produto</h1>
-          {product.image_url && (
-            <div className="flex justify-center">
-              <img
-                src={product.image_url}
-                alt={product.name}
-                className="w-full max-w-lg h-auto object-contain rounded"
-              />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-8">
+        <div className="max-w-4xl mx-auto">
+          <button
+            onClick={() => navigate("/")}
+            className="mb-6 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition"
+          >
+            ← Voltar para Produtos
+          </button>
+
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            {/* Cabeçalho com gradiente */}
+            <div className="bg-gradient-to-r from-blue-500 to-blue-600 h-32"></div>
+
+            <div className="p-8 md:p-12 -mt-16 relative">
+              <div className="flex flex-col md:flex-row gap-8">
+                {/* Imagem */}
+                {product?.image_url && (
+                  <div className="md:w-1/3">
+                    <div className="bg-gray-100 rounded-xl overflow-hidden shadow-lg">
+                      <img
+                        src={product.image_url}
+                        alt={product.name}
+                        className="w-full h-80 object-cover hover:scale-105 transition transform duration-300"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Informações */}
+                <div className="md:w-2/3 space-y-6">
+                  <div>
+                    <h1 className="text-4xl font-bold text-gray-800 mb-2">{product?.name}</h1>
+                    <div className="flex items-center gap-2">
+                      <span className="inline-block px-4 py-1 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full">
+                        ✓ Disponível
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="border-l-4 border-blue-500 pl-4">
+                    <p className="text-gray-700 text-lg leading-relaxed">{product?.description}</p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl">
+                    <p className="text-gray-600 text-sm mb-1">Preço</p>
+                    <p className="text-4xl font-bold text-blue-600">R$ {Number(product?.price).toFixed(2)}</p>
+                  </div>
+
+                  {/* Botões de ação */}
+                  <div className="flex flex-col md:flex-row gap-3 pt-4">
+                    <button
+                      onClick={() => navigate(`/products/${product?.id}/edit/`)}
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-semibold transition transform hover:scale-105 active:scale-95 shadow-lg"
+                    >
+                      ✏️ Editar Produto
+                    </button>
+                    <button
+                      onClick={handleDelete}
+                      className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-lg font-semibold transition transform hover:scale-105 active:scale-95 shadow-lg"
+                    >
+                      🗑️ Excluir
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-          )}
-          <h2 className="text-2xl font-semibold">{product.name}</h2>
-          <p className="text-gray-700">{product.description}</p>
-          <p className="text-lg font-semibold">Preço: R$ {product.price}</p>
-    
-          <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
-            <button
-              onClick={() => navigate(`/products/${product.id}/edit/`)}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full md:w-auto"
-            >
-              Editar Produto
-            </button>
-            <button
-              onClick={handleDelete}
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded w-full md:w-auto"
-            >
-              Excluir Produto
-            </button>
-            <button
-              onClick={() => navigate("/")}
-              className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded w-full md:w-auto"
-            >
-              Voltar
-            </button>
           </div>
         </div>
       </div>

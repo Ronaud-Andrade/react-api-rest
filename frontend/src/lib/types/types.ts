@@ -15,6 +15,19 @@ export type ProductFormData = {
   image_url: string;
 };
 
+export type Gallery = {
+  id: number;
+  title: string;
+  description: string;
+  image_url: string;
+};
+
+export type GalleryFormData = {
+  title: string;
+  description: string;
+  image_url: string;
+};
+
 // Tipo de resposta de paginação da API (usado com React Query)
 export type PaginatedResponse<T> = {
   count: number;

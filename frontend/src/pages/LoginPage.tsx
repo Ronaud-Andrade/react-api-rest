@@ -33,35 +33,52 @@ function LoginPage() {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-blue-600 to-purple-700 flex items-center justify-center p-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md"
+        className="bg-white/95 backdrop-blur-sm p-10 rounded-2xl shadow-2xl w-full max-w-md transform transition hover:shadow-3xl"
       >
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
-          Acessar Conta
+        <h2 className="text-4xl font-bold mb-2 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Marketplace
         </h2>
-  
-        <input
-          {...register("username")}
-          placeholder="Usuário"
-          className="text-gray-500 w-full p-3 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <p className="text-red-500 text-sm mb-4">{errors.username?.message}</p>
-  
-        <input
-          {...register("password")}
-          type="password"
-          placeholder="Senha"
-          className="text-gray-500 w-full p-3 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <p className="text-red-500 text-sm mb-6">{errors.password?.message}</p>
-  
+        <p className="text-center text-gray-600 mb-8 text-sm">Acesse sua conta para continuar</p>
+
+        <div className="space-y-5">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Usuário</label>
+            <input
+              {...register("username")}
+              placeholder="Digite seu usuário"
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition placeholder-gray-400"
+            />
+            {errors.username && (
+              <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                ⚠️ {errors.username.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+            <input
+              {...register("password")}
+              type="password"
+              placeholder="Digite sua senha"
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition placeholder-gray-400"
+            />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                ⚠️ {errors.password.message}
+              </p>
+            )}
+          </div>
+        </div>
+
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition duration-200"
+          className="w-full mt-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 rounded-lg font-bold transition transform hover:scale-105 active:scale-95 shadow-lg"
         >
-          Entrar
+          🚀 Entrar
         </button>
       </form>
     </div>
